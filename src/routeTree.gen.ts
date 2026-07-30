@@ -17,7 +17,9 @@ import { Route as AdminAppIndexRouteImport } from './routes/admin._app.index'
 import { Route as AdminAppActivityRouteImport } from './routes/admin._app.activity'
 import { Route as AdminAppAnalyticsRouteImport } from './routes/admin._app.analytics'
 import { Route as AdminAppBlogRouteImport } from './routes/admin._app.blog'
+import { Route as AdminAppCareersRouteImport } from './routes/admin._app.careers'
 import { Route as AdminAppCategoriesRouteImport } from './routes/admin._app.categories'
+import { Route as AdminAppMediaRouteImport } from './routes/admin._app.media'
 import { Route as AdminAppMessagesRouteImport } from './routes/admin._app.messages'
 import { Route as AdminAppProductsRouteImport } from './routes/admin._app.products'
 import { Route as AdminAppSubscribersRouteImport } from './routes/admin._app.subscribers'
@@ -63,9 +65,19 @@ const AdminAppBlogRoute = AdminAppBlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => AdminAppRoute,
 } as any)
+const AdminAppCareersRoute = AdminAppCareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => AdminAppRoute,
+} as any)
 const AdminAppCategoriesRoute = AdminAppCategoriesRouteImport.update({
   id: '/categories',
   path: '/categories',
+  getParentRoute: () => AdminAppRoute,
+} as any)
+const AdminAppMediaRoute = AdminAppMediaRouteImport.update({
+  id: '/media',
+  path: '/media',
   getParentRoute: () => AdminAppRoute,
 } as any)
 const AdminAppMessagesRoute = AdminAppMessagesRouteImport.update({
@@ -97,7 +109,9 @@ export interface FileRoutesByFullPath {
   '/admin/activity': typeof AdminAppActivityRoute
   '/admin/analytics': typeof AdminAppAnalyticsRoute
   '/admin/blog': typeof AdminAppBlogRoute
+  '/admin/careers': typeof AdminAppCareersRoute
   '/admin/categories': typeof AdminAppCategoriesRoute
+  '/admin/media': typeof AdminAppMediaRoute
   '/admin/messages': typeof AdminAppMessagesRoute
   '/admin/products': typeof AdminAppProductsRoute
   '/admin/subscribers': typeof AdminAppSubscribersRoute
@@ -111,7 +125,9 @@ export interface FileRoutesByTo {
   '/admin/activity': typeof AdminAppActivityRoute
   '/admin/analytics': typeof AdminAppAnalyticsRoute
   '/admin/blog': typeof AdminAppBlogRoute
+  '/admin/careers': typeof AdminAppCareersRoute
   '/admin/categories': typeof AdminAppCategoriesRoute
+  '/admin/media': typeof AdminAppMediaRoute
   '/admin/messages': typeof AdminAppMessagesRoute
   '/admin/products': typeof AdminAppProductsRoute
   '/admin/subscribers': typeof AdminAppSubscribersRoute
@@ -127,7 +143,9 @@ export interface FileRoutesById {
   '/admin/_app/activity': typeof AdminAppActivityRoute
   '/admin/_app/analytics': typeof AdminAppAnalyticsRoute
   '/admin/_app/blog': typeof AdminAppBlogRoute
+  '/admin/_app/careers': typeof AdminAppCareersRoute
   '/admin/_app/categories': typeof AdminAppCategoriesRoute
+  '/admin/_app/media': typeof AdminAppMediaRoute
   '/admin/_app/messages': typeof AdminAppMessagesRoute
   '/admin/_app/products': typeof AdminAppProductsRoute
   '/admin/_app/subscribers': typeof AdminAppSubscribersRoute
@@ -144,7 +162,9 @@ export interface FileRouteTypes {
     | '/admin/activity'
     | '/admin/analytics'
     | '/admin/blog'
+    | '/admin/careers'
     | '/admin/categories'
+    | '/admin/media'
     | '/admin/messages'
     | '/admin/products'
     | '/admin/subscribers'
@@ -158,7 +178,9 @@ export interface FileRouteTypes {
     | '/admin/activity'
     | '/admin/analytics'
     | '/admin/blog'
+    | '/admin/careers'
     | '/admin/categories'
+    | '/admin/media'
     | '/admin/messages'
     | '/admin/products'
     | '/admin/subscribers'
@@ -173,7 +195,9 @@ export interface FileRouteTypes {
     | '/admin/_app/activity'
     | '/admin/_app/analytics'
     | '/admin/_app/blog'
+    | '/admin/_app/careers'
     | '/admin/_app/categories'
+    | '/admin/_app/media'
     | '/admin/_app/messages'
     | '/admin/_app/products'
     | '/admin/_app/subscribers'
@@ -246,11 +270,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAppBlogRouteImport
       parentRoute: typeof AdminAppRoute
     }
+    '/admin/_app/careers': {
+      id: '/admin/_app/careers'
+      path: '/careers'
+      fullPath: '/admin/careers'
+      preLoaderRoute: typeof AdminAppCareersRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
     '/admin/_app/categories': {
       id: '/admin/_app/categories'
       path: '/categories'
       fullPath: '/admin/categories'
       preLoaderRoute: typeof AdminAppCategoriesRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
+    '/admin/_app/media': {
+      id: '/admin/_app/media'
+      path: '/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AdminAppMediaRouteImport
       parentRoute: typeof AdminAppRoute
     }
     '/admin/_app/messages': {
@@ -288,7 +326,9 @@ interface AdminAppRouteChildren {
   AdminAppActivityRoute: typeof AdminAppActivityRoute
   AdminAppAnalyticsRoute: typeof AdminAppAnalyticsRoute
   AdminAppBlogRoute: typeof AdminAppBlogRoute
+  AdminAppCareersRoute: typeof AdminAppCareersRoute
   AdminAppCategoriesRoute: typeof AdminAppCategoriesRoute
+  AdminAppMediaRoute: typeof AdminAppMediaRoute
   AdminAppMessagesRoute: typeof AdminAppMessagesRoute
   AdminAppProductsRoute: typeof AdminAppProductsRoute
   AdminAppSubscribersRoute: typeof AdminAppSubscribersRoute
@@ -300,7 +340,9 @@ const AdminAppRouteChildren: AdminAppRouteChildren = {
   AdminAppActivityRoute: AdminAppActivityRoute,
   AdminAppAnalyticsRoute: AdminAppAnalyticsRoute,
   AdminAppBlogRoute: AdminAppBlogRoute,
+  AdminAppCareersRoute: AdminAppCareersRoute,
   AdminAppCategoriesRoute: AdminAppCategoriesRoute,
+  AdminAppMediaRoute: AdminAppMediaRoute,
   AdminAppMessagesRoute: AdminAppMessagesRoute,
   AdminAppProductsRoute: AdminAppProductsRoute,
   AdminAppSubscribersRoute: AdminAppSubscribersRoute,
