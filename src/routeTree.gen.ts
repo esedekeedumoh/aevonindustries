@@ -13,6 +13,11 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminAppRouteImport } from './routes/admin._app'
 import { Route as AdminChangePasswordRouteImport } from './routes/admin.change-password'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminAppIndexRouteImport } from './routes/admin._app.index'
+import { Route as AdminAppBlogRouteImport } from './routes/admin._app.blog'
+import { Route as AdminAppCategoriesRouteImport } from './routes/admin._app.categories'
+import { Route as AdminAppProductsRouteImport } from './routes/admin._app.products'
+import { Route as AdminAppTeamRouteImport } from './routes/admin._app.team'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,38 +39,103 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminAppIndexRoute = AdminAppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminAppRoute,
+} as any)
+const AdminAppBlogRoute = AdminAppBlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => AdminAppRoute,
+} as any)
+const AdminAppCategoriesRoute = AdminAppCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => AdminAppRoute,
+} as any)
+const AdminAppProductsRoute = AdminAppProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => AdminAppRoute,
+} as any)
+const AdminAppTeamRoute = AdminAppTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => AdminAppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin': typeof AdminAppRoute
+  '/admin': typeof AdminAppRouteWithChildren
   '/admin/change-password': typeof AdminChangePasswordRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/blog': typeof AdminAppBlogRoute
+  '/admin/categories': typeof AdminAppCategoriesRoute
+  '/admin/products': typeof AdminAppProductsRoute
+  '/admin/team': typeof AdminAppTeamRoute
+  '/admin/': typeof AdminAppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin': typeof AdminAppRoute
   '/admin/change-password': typeof AdminChangePasswordRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/blog': typeof AdminAppBlogRoute
+  '/admin/categories': typeof AdminAppCategoriesRoute
+  '/admin/products': typeof AdminAppProductsRoute
+  '/admin/team': typeof AdminAppTeamRoute
+  '/admin': typeof AdminAppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin/_app': typeof AdminAppRoute
+  '/admin/_app': typeof AdminAppRouteWithChildren
   '/admin/change-password': typeof AdminChangePasswordRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/_app/blog': typeof AdminAppBlogRoute
+  '/admin/_app/categories': typeof AdminAppCategoriesRoute
+  '/admin/_app/products': typeof AdminAppProductsRoute
+  '/admin/_app/team': typeof AdminAppTeamRoute
+  '/admin/_app/': typeof AdminAppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/admin/change-password' | '/admin/login'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/admin/change-password'
+    | '/admin/login'
+    | '/admin/blog'
+    | '/admin/categories'
+    | '/admin/products'
+    | '/admin/team'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/admin/change-password' | '/admin/login'
+  to:
+    | '/'
+    | '/admin/change-password'
+    | '/admin/login'
+    | '/admin/blog'
+    | '/admin/categories'
+    | '/admin/products'
+    | '/admin/team'
+    | '/admin'
   id:
-    '__root__' | '/' | '/admin/_app' | '/admin/change-password' | '/admin/login'
+    | '__root__'
+    | '/'
+    | '/admin/_app'
+    | '/admin/change-password'
+    | '/admin/login'
+    | '/admin/_app/blog'
+    | '/admin/_app/categories'
+    | '/admin/_app/products'
+    | '/admin/_app/team'
+    | '/admin/_app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminAppRoute: typeof AdminAppRoute
+  AdminAppRoute: typeof AdminAppRouteWithChildren
   AdminChangePasswordRoute: typeof AdminChangePasswordRoute
   AdminLoginRoute: typeof AdminLoginRoute
 }
@@ -100,12 +170,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/_app/': {
+      id: '/admin/_app/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminAppIndexRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
+    '/admin/_app/blog': {
+      id: '/admin/_app/blog'
+      path: '/blog'
+      fullPath: '/admin/blog'
+      preLoaderRoute: typeof AdminAppBlogRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
+    '/admin/_app/categories': {
+      id: '/admin/_app/categories'
+      path: '/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AdminAppCategoriesRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
+    '/admin/_app/products': {
+      id: '/admin/_app/products'
+      path: '/products'
+      fullPath: '/admin/products'
+      preLoaderRoute: typeof AdminAppProductsRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
+    '/admin/_app/team': {
+      id: '/admin/_app/team'
+      path: '/team'
+      fullPath: '/admin/team'
+      preLoaderRoute: typeof AdminAppTeamRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
   }
 }
 
+interface AdminAppRouteChildren {
+  AdminAppBlogRoute: typeof AdminAppBlogRoute
+  AdminAppCategoriesRoute: typeof AdminAppCategoriesRoute
+  AdminAppProductsRoute: typeof AdminAppProductsRoute
+  AdminAppTeamRoute: typeof AdminAppTeamRoute
+  AdminAppIndexRoute: typeof AdminAppIndexRoute
+}
+
+const AdminAppRouteChildren: AdminAppRouteChildren = {
+  AdminAppBlogRoute: AdminAppBlogRoute,
+  AdminAppCategoriesRoute: AdminAppCategoriesRoute,
+  AdminAppProductsRoute: AdminAppProductsRoute,
+  AdminAppTeamRoute: AdminAppTeamRoute,
+  AdminAppIndexRoute: AdminAppIndexRoute,
+}
+
+const AdminAppRouteWithChildren = AdminAppRoute._addFileChildren(
+  AdminAppRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminAppRoute: AdminAppRoute,
+  AdminAppRoute: AdminAppRouteWithChildren,
   AdminChangePasswordRoute: AdminChangePasswordRoute,
   AdminLoginRoute: AdminLoginRoute,
 }
