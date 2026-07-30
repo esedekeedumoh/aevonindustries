@@ -224,6 +224,99 @@ export type Database = {
         }
         Relationships: []
       }
+      job_openings: {
+        Row: {
+          apply_url: string | null
+          created_at: string
+          department: string | null
+          description: string
+          employment_type: string
+          id: string
+          level: string | null
+          location: string | null
+          requirements: string | null
+          salary_range: string | null
+          slug: string
+          sort_order: number
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          apply_url?: string | null
+          created_at?: string
+          department?: string | null
+          description?: string
+          employment_type?: string
+          id?: string
+          level?: string | null
+          location?: string | null
+          requirements?: string | null
+          salary_range?: string | null
+          slug: string
+          sort_order?: number
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          apply_url?: string | null
+          created_at?: string
+          department?: string | null
+          description?: string
+          employment_type?: string
+          id?: string
+          level?: string | null
+          location?: string | null
+          requirements?: string | null
+          salary_range?: string | null
+          slug?: string
+          sort_order?: number
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      media_assets: {
+        Row: {
+          alt_text: string | null
+          caption: string | null
+          created_at: string
+          file_size: number | null
+          file_type: string | null
+          folder: string
+          id: string
+          name: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          alt_text?: string | null
+          caption?: string | null
+          created_at?: string
+          file_size?: number | null
+          file_type?: string | null
+          folder?: string
+          id?: string
+          name: string
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          alt_text?: string | null
+          caption?: string | null
+          created_at?: string
+          file_size?: number | null
+          file_type?: string | null
+          folder?: string
+          id?: string
+          name?: string
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           created_at: string
