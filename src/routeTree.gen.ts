@@ -14,9 +14,13 @@ import { Route as AdminAppRouteImport } from './routes/admin._app'
 import { Route as AdminChangePasswordRouteImport } from './routes/admin.change-password'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminAppIndexRouteImport } from './routes/admin._app.index'
+import { Route as AdminAppActivityRouteImport } from './routes/admin._app.activity'
+import { Route as AdminAppAnalyticsRouteImport } from './routes/admin._app.analytics'
 import { Route as AdminAppBlogRouteImport } from './routes/admin._app.blog'
 import { Route as AdminAppCategoriesRouteImport } from './routes/admin._app.categories'
+import { Route as AdminAppMessagesRouteImport } from './routes/admin._app.messages'
 import { Route as AdminAppProductsRouteImport } from './routes/admin._app.products'
+import { Route as AdminAppSubscribersRouteImport } from './routes/admin._app.subscribers'
 import { Route as AdminAppTeamRouteImport } from './routes/admin._app.team'
 
 const IndexRoute = IndexRouteImport.update({
@@ -44,6 +48,16 @@ const AdminAppIndexRoute = AdminAppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminAppRoute,
 } as any)
+const AdminAppActivityRoute = AdminAppActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
+  getParentRoute: () => AdminAppRoute,
+} as any)
+const AdminAppAnalyticsRoute = AdminAppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AdminAppRoute,
+} as any)
 const AdminAppBlogRoute = AdminAppBlogRouteImport.update({
   id: '/blog',
   path: '/blog',
@@ -54,9 +68,19 @@ const AdminAppCategoriesRoute = AdminAppCategoriesRouteImport.update({
   path: '/categories',
   getParentRoute: () => AdminAppRoute,
 } as any)
+const AdminAppMessagesRoute = AdminAppMessagesRouteImport.update({
+  id: '/messages',
+  path: '/messages',
+  getParentRoute: () => AdminAppRoute,
+} as any)
 const AdminAppProductsRoute = AdminAppProductsRouteImport.update({
   id: '/products',
   path: '/products',
+  getParentRoute: () => AdminAppRoute,
+} as any)
+const AdminAppSubscribersRoute = AdminAppSubscribersRouteImport.update({
+  id: '/subscribers',
+  path: '/subscribers',
   getParentRoute: () => AdminAppRoute,
 } as any)
 const AdminAppTeamRoute = AdminAppTeamRouteImport.update({
@@ -70,9 +94,13 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminAppRouteWithChildren
   '/admin/change-password': typeof AdminChangePasswordRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/activity': typeof AdminAppActivityRoute
+  '/admin/analytics': typeof AdminAppAnalyticsRoute
   '/admin/blog': typeof AdminAppBlogRoute
   '/admin/categories': typeof AdminAppCategoriesRoute
+  '/admin/messages': typeof AdminAppMessagesRoute
   '/admin/products': typeof AdminAppProductsRoute
+  '/admin/subscribers': typeof AdminAppSubscribersRoute
   '/admin/team': typeof AdminAppTeamRoute
   '/admin/': typeof AdminAppIndexRoute
 }
@@ -80,9 +108,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin/change-password': typeof AdminChangePasswordRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/activity': typeof AdminAppActivityRoute
+  '/admin/analytics': typeof AdminAppAnalyticsRoute
   '/admin/blog': typeof AdminAppBlogRoute
   '/admin/categories': typeof AdminAppCategoriesRoute
+  '/admin/messages': typeof AdminAppMessagesRoute
   '/admin/products': typeof AdminAppProductsRoute
+  '/admin/subscribers': typeof AdminAppSubscribersRoute
   '/admin/team': typeof AdminAppTeamRoute
   '/admin': typeof AdminAppIndexRoute
 }
@@ -92,9 +124,13 @@ export interface FileRoutesById {
   '/admin/_app': typeof AdminAppRouteWithChildren
   '/admin/change-password': typeof AdminChangePasswordRoute
   '/admin/login': typeof AdminLoginRoute
+  '/admin/_app/activity': typeof AdminAppActivityRoute
+  '/admin/_app/analytics': typeof AdminAppAnalyticsRoute
   '/admin/_app/blog': typeof AdminAppBlogRoute
   '/admin/_app/categories': typeof AdminAppCategoriesRoute
+  '/admin/_app/messages': typeof AdminAppMessagesRoute
   '/admin/_app/products': typeof AdminAppProductsRoute
+  '/admin/_app/subscribers': typeof AdminAppSubscribersRoute
   '/admin/_app/team': typeof AdminAppTeamRoute
   '/admin/_app/': typeof AdminAppIndexRoute
 }
@@ -105,9 +141,13 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin/change-password'
     | '/admin/login'
+    | '/admin/activity'
+    | '/admin/analytics'
     | '/admin/blog'
     | '/admin/categories'
+    | '/admin/messages'
     | '/admin/products'
+    | '/admin/subscribers'
     | '/admin/team'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
@@ -115,9 +155,13 @@ export interface FileRouteTypes {
     | '/'
     | '/admin/change-password'
     | '/admin/login'
+    | '/admin/activity'
+    | '/admin/analytics'
     | '/admin/blog'
     | '/admin/categories'
+    | '/admin/messages'
     | '/admin/products'
+    | '/admin/subscribers'
     | '/admin/team'
     | '/admin'
   id:
@@ -126,9 +170,13 @@ export interface FileRouteTypes {
     | '/admin/_app'
     | '/admin/change-password'
     | '/admin/login'
+    | '/admin/_app/activity'
+    | '/admin/_app/analytics'
     | '/admin/_app/blog'
     | '/admin/_app/categories'
+    | '/admin/_app/messages'
     | '/admin/_app/products'
+    | '/admin/_app/subscribers'
     | '/admin/_app/team'
     | '/admin/_app/'
   fileRoutesById: FileRoutesById
@@ -177,6 +225,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAppIndexRouteImport
       parentRoute: typeof AdminAppRoute
     }
+    '/admin/_app/activity': {
+      id: '/admin/_app/activity'
+      path: '/activity'
+      fullPath: '/admin/activity'
+      preLoaderRoute: typeof AdminAppActivityRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
+    '/admin/_app/analytics': {
+      id: '/admin/_app/analytics'
+      path: '/analytics'
+      fullPath: '/admin/analytics'
+      preLoaderRoute: typeof AdminAppAnalyticsRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
     '/admin/_app/blog': {
       id: '/admin/_app/blog'
       path: '/blog'
@@ -191,11 +253,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAppCategoriesRouteImport
       parentRoute: typeof AdminAppRoute
     }
+    '/admin/_app/messages': {
+      id: '/admin/_app/messages'
+      path: '/messages'
+      fullPath: '/admin/messages'
+      preLoaderRoute: typeof AdminAppMessagesRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
     '/admin/_app/products': {
       id: '/admin/_app/products'
       path: '/products'
       fullPath: '/admin/products'
       preLoaderRoute: typeof AdminAppProductsRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
+    '/admin/_app/subscribers': {
+      id: '/admin/_app/subscribers'
+      path: '/subscribers'
+      fullPath: '/admin/subscribers'
+      preLoaderRoute: typeof AdminAppSubscribersRouteImport
       parentRoute: typeof AdminAppRoute
     }
     '/admin/_app/team': {
@@ -209,17 +285,25 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminAppRouteChildren {
+  AdminAppActivityRoute: typeof AdminAppActivityRoute
+  AdminAppAnalyticsRoute: typeof AdminAppAnalyticsRoute
   AdminAppBlogRoute: typeof AdminAppBlogRoute
   AdminAppCategoriesRoute: typeof AdminAppCategoriesRoute
+  AdminAppMessagesRoute: typeof AdminAppMessagesRoute
   AdminAppProductsRoute: typeof AdminAppProductsRoute
+  AdminAppSubscribersRoute: typeof AdminAppSubscribersRoute
   AdminAppTeamRoute: typeof AdminAppTeamRoute
   AdminAppIndexRoute: typeof AdminAppIndexRoute
 }
 
 const AdminAppRouteChildren: AdminAppRouteChildren = {
+  AdminAppActivityRoute: AdminAppActivityRoute,
+  AdminAppAnalyticsRoute: AdminAppAnalyticsRoute,
   AdminAppBlogRoute: AdminAppBlogRoute,
   AdminAppCategoriesRoute: AdminAppCategoriesRoute,
+  AdminAppMessagesRoute: AdminAppMessagesRoute,
   AdminAppProductsRoute: AdminAppProductsRoute,
+  AdminAppSubscribersRoute: AdminAppSubscribersRoute,
   AdminAppTeamRoute: AdminAppTeamRoute,
   AdminAppIndexRoute: AdminAppIndexRoute,
 }
