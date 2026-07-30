@@ -191,3 +191,35 @@ export const siteSettingsQuery = queryOptions({
     return (data ?? []) as { key: string; value: Record<string, unknown> }[];
   },
 });
+
+export type JobOpening = {
+  id: string;
+  title: string;
+  slug: string;
+  department: string | null;
+  location: string | null;
+  employment_type: string;
+  level: string | null;
+  description: string;
+  requirements: string | null;
+  salary_range: string | null;
+  apply_url: string | null;
+  status: string;
+  sort_order: number;
+  created_at: string;
+};
+
+export type MediaAsset = {
+  id: string;
+  name: string;
+  url: string;
+  file_type: string | null;
+  file_size: number | null;
+  folder: string;
+  alt_text: string | null;
+  caption: string | null;
+  created_at: string;
+};
+
+export const adminCareersQuery = list<JobOpening>("careers", "job_openings", "sort_order");
+export const adminMediaQuery = list<MediaAsset>("media", "media_assets", "created_at", false);
