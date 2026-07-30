@@ -55,7 +55,7 @@ export async function logActivity(input: {
     user_email: data.user.email ?? "",
     action: input.action,
     module: input.module,
-    details: input.details ?? {},
+    details: (input.details ?? {}) as never,
     status: input.status ?? "success",
     user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
   });
