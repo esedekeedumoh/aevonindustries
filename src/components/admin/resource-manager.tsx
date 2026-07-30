@@ -63,7 +63,7 @@ export function ResourceManager<T extends Row>({
   title: string;
   table: string;
   moduleKey: string;
-  query: UseQueryOptions<T[], Error, T[], any>;
+  query: UseQueryOptions<T[], Error, T[], string[]>;
   columns: Column<T>[];
   fields: Field[];
   searchKeys: (keyof T & string)[];
