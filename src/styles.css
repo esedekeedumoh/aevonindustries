@@ -65,7 +65,7 @@
   --violet: oklch(0.52 0.26 300);
   --royal: oklch(0.5 0.25 267);
   --cyan: oklch(0.72 0.16 225);
-  --surface: oklch(1 0 0 / 65%);
+  --surface: oklch(1 0 0 / 80%);
   --glass-border: oklch(0.3 0.05 285 / 10%);
 }
 
@@ -92,7 +92,7 @@
   --violet: oklch(0.7 0.2 300);
   --royal: oklch(0.62 0.22 267);
   --cyan: oklch(0.78 0.14 220);
-  --surface: oklch(0.22 0.03 285 / 55%);
+  --surface: oklch(0.2 0.03 285 / 75%);
   --glass-border: oklch(1 0 0 / 10%);
 }
 

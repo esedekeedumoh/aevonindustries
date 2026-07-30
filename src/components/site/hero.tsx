@@ -9,8 +9,8 @@ import academyLogo from "@/assets/academy.png.asset.json";
 const orbitNodes = [
   { src: vonLogo.url, label: "Von" },
   { src: hakuLogo.url, label: "Aevon Browser" },
-  { src: academyLogo.url, label: "Catalyst Digital" },
-  { src: aevonLogo.url, label: "Aevon Academy" },
+  { src: aevonLogo.url, label: "Catalyst Digital" },
+  { src: academyLogo.url, label: "Aevon Academy" },
 ];
 
 function Particles() {
