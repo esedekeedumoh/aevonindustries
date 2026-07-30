@@ -55,7 +55,6 @@ function Index() {
     <div className="relative min-h-screen overflow-x-hidden">
       <SiteNav />
       <main>
-        <h1 className="sr-only">Aevon Industries — corporate technology ecosystem</h1>
         <Hero />
         <WhoWeAre />
         <MissionVision />
