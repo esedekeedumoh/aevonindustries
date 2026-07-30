@@ -14,30 +14,306 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_logs: {
+        Row: {
+          action: string
+          created_at: string
+          details: Json
+          id: string
+          ip_address: string | null
+          module: string
+          status: string
+          user_agent: string | null
+          user_email: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action: string
+          created_at?: string
+          details?: Json
+          id?: string
+          ip_address?: string | null
+          module: string
+          status?: string
+          user_agent?: string | null
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action?: string
+          created_at?: string
+          details?: Json
+          id?: string
+          ip_address?: string | null
+          module?: string
+          status?: string
+          user_agent?: string | null
+          user_email?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      admin_profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          department: string | null
+          email: string
+          full_name: string
+          id: string
+          job_title: string | null
+          last_login_at: string | null
+          must_change_password: boolean
+          phone: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          department?: string | null
+          email?: string
+          full_name?: string
+          id: string
+          job_title?: string | null
+          last_login_at?: string | null
+          must_change_password?: boolean
+          phone?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          department?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          job_title?: string | null
+          last_login_at?: string | null
+          must_change_password?: boolean
+          phone?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      blog_posts: {
+        Row: {
+          author: string | null
+          category: string | null
+          comments_enabled: boolean
+          content: string
+          cover_image: string | null
+          created_at: string
+          created_by: string | null
+          excerpt: string | null
+          id: string
+          published_at: string | null
+          seo_description: string | null
+          seo_title: string | null
+          slug: string
+          status: string
+          tags: string[]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: string | null
+          category?: string | null
+          comments_enabled?: boolean
+          content?: string
+          cover_image?: string | null
+          created_at?: string
+          created_by?: string | null
+          excerpt?: string | null
+          id?: string
+          published_at?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
+          slug: string
+          status?: string
+          tags?: string[]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string | null
+          category?: string | null
+          comments_enabled?: boolean
+          content?: string
+          cover_image?: string | null
+          created_at?: string
+          created_by?: string | null
+          excerpt?: string | null
+          id?: string
+          published_at?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
+          slug?: string
+          status?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      categories: {
+        Row: {
+          created_at: string
+          description: string | null
+          icon: string | null
+          id: string
+          name: string
+          slug: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name: string
+          slug: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          name?: string
+          slug?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       contact_messages: {
         Row: {
+          assigned_to: string | null
           created_at: string
           email: string
           id: string
           message: string
           name: string
+          status: string
           subject: string | null
         }
         Insert: {
+          assigned_to?: string | null
           created_at?: string
           email: string
           id?: string
           message: string
           name: string
+          status?: string
           subject?: string | null
         }
         Update: {
+          assigned_to?: string | null
           created_at?: string
           email?: string
           id?: string
           message?: string
           name?: string
+          status?: string
           subject?: string | null
+        }
+        Relationships: []
+      }
+      job_openings: {
+        Row: {
+          apply_url: string | null
+          created_at: string
+          department: string | null
+          description: string
+          employment_type: string
+          id: string
+          level: string | null
+          location: string | null
+          requirements: string | null
+          salary_range: string | null
+          slug: string
+          sort_order: number
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          apply_url?: string | null
+          created_at?: string
+          department?: string | null
+          description?: string
+          employment_type?: string
+          id?: string
+          level?: string | null
+          location?: string | null
+          requirements?: string | null
+          salary_range?: string | null
+          slug: string
+          sort_order?: number
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          apply_url?: string | null
+          created_at?: string
+          department?: string | null
+          description?: string
+          employment_type?: string
+          id?: string
+          level?: string | null
+          location?: string | null
+          requirements?: string | null
+          salary_range?: string | null
+          slug?: string
+          sort_order?: number
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      media_assets: {
+        Row: {
+          alt_text: string | null
+          caption: string | null
+          created_at: string
+          file_size: number | null
+          file_type: string | null
+          folder: string
+          id: string
+          name: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          alt_text?: string | null
+          caption?: string | null
+          created_at?: string
+          file_size?: number | null
+          file_type?: string | null
+          folder?: string
+          id?: string
+          name: string
+          updated_at?: string
+          url: string
+        }
+        Update: {
+          alt_text?: string | null
+          caption?: string | null
+          created_at?: string
+          file_size?: number | null
+          file_type?: string | null
+          folder?: string
+          id?: string
+          name?: string
+          updated_at?: string
+          url?: string
         }
         Relationships: []
       }
@@ -61,58 +337,172 @@ export type Database = {
       }
       products: {
         Row: {
+          archived: boolean
           category: string
           created_at: string
           description: string
+          docs_url: string | null
+          download_url: string | null
           featured: boolean
           id: string
           images: string[]
           logo_url: string | null
+          long_description: string | null
           name: string
           platform: string | null
           release_date: string | null
+          seo_description: string | null
+          seo_title: string | null
           slug: string
           sort_order: number
           status: string
           tags: string[]
           updated_at: string
+          version: string | null
+          video_url: string | null
           website_url: string | null
         }
         Insert: {
+          archived?: boolean
           category: string
           created_at?: string
           description: string
+          docs_url?: string | null
+          download_url?: string | null
           featured?: boolean
           id?: string
           images?: string[]
           logo_url?: string | null
+          long_description?: string | null
           name: string
           platform?: string | null
           release_date?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
           slug: string
           sort_order?: number
           status?: string
           tags?: string[]
           updated_at?: string
+          version?: string | null
+          video_url?: string | null
           website_url?: string | null
         }
         Update: {
+          archived?: boolean
           category?: string
           created_at?: string
           description?: string
+          docs_url?: string | null
+          download_url?: string | null
           featured?: boolean
           id?: string
           images?: string[]
           logo_url?: string | null
+          long_description?: string | null
           name?: string
           platform?: string | null
           release_date?: string | null
+          seo_description?: string | null
+          seo_title?: string | null
           slug?: string
           sort_order?: number
           status?: string
           tags?: string[]
           updated_at?: string
+          version?: string | null
+          video_url?: string | null
           website_url?: string | null
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value?: Json
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      team_members: {
+        Row: {
+          bio: string | null
+          created_at: string
+          department: string | null
+          email: string | null
+          featured: boolean
+          github_url: string | null
+          id: string
+          linkedin_url: string | null
+          name: string
+          photo_url: string | null
+          role: string
+          sort_order: number
+          updated_at: string
+          x_url: string | null
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          department?: string | null
+          email?: string | null
+          featured?: boolean
+          github_url?: string | null
+          id?: string
+          linkedin_url?: string | null
+          name: string
+          photo_url?: string | null
+          role: string
+          sort_order?: number
+          updated_at?: string
+          x_url?: string | null
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          department?: string | null
+          email?: string | null
+          featured?: boolean
+          github_url?: string | null
+          id?: string
+          linkedin_url?: string | null
+          name?: string
+          photo_url?: string | null
+          role?: string
+          sort_order?: number
+          updated_at?: string
+          x_url?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
         }
         Relationships: []
       }
@@ -121,10 +511,25 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      can_edit: { Args: { _user_id: string }; Returns: boolean }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_admin: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role:
+        | "super_admin"
+        | "administrator"
+        | "editor"
+        | "content_manager"
+        | "marketing_manager"
+        | "support_manager"
+        | "viewer"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -251,6 +656,16 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: [
+        "super_admin",
+        "administrator",
+        "editor",
+        "content_manager",
+        "marketing_manager",
+        "support_manager",
+        "viewer",
+      ],
+    },
   },
 } as const
