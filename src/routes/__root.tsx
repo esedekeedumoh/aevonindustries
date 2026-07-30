@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Aevon Industries builds intelligent software, AI, education platforms, browsers, and digital services.",
       },
       { name: "author", content: "Aevon Industries" },
-      { property: "og:title", content: "Aevon Industries" },
+      { property: "og:title", content: "Aevon Industries — Building the Future Through Technology" },
       {
         property: "og:description",
         content:
@@ -92,6 +92,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Aevon Industries — Building the Future Through Technology" },
+      { name: "twitter:description", content: "Aevon Industries builds intelligent software, AI, education platforms, browsers, and digital services." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3c10b75a-196e-49bd-99a6-e3bd5ecbd4b7" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/3c10b75a-196e-49bd-99a6-e3bd5ecbd4b7" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -104,7 +108,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,
