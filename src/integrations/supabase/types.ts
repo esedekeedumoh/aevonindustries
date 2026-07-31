@@ -506,6 +506,53 @@ export type Database = {
         }
         Relationships: []
       }
+      waitlist_entries: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          notified_at: string | null
+          phone: string | null
+          product_id: string | null
+          product_name: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          notified_at?: string | null
+          phone?: string | null
+          product_id?: string | null
+          product_name: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          notified_at?: string | null
+          phone?: string | null
+          product_id?: string | null
+          product_name?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "waitlist_entries_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
