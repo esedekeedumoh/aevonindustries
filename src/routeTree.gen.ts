@@ -28,6 +28,7 @@ import { Route as AdminAppSettingsRouteImport } from './routes/admin._app.settin
 import { Route as AdminAppSubscribersRouteImport } from './routes/admin._app.subscribers'
 import { Route as AdminAppTeamRouteImport } from './routes/admin._app.team'
 import { Route as AdminAppUsersRouteImport } from './routes/admin._app.users'
+import { Route as AdminAppWaitlistRouteImport } from './routes/admin._app.waitlist'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -124,6 +125,11 @@ const AdminAppUsersRoute = AdminAppUsersRouteImport.update({
   path: '/users',
   getParentRoute: () => AdminAppRoute,
 } as any)
+const AdminAppWaitlistRoute = AdminAppWaitlistRouteImport.update({
+  id: '/waitlist',
+  path: '/waitlist',
+  getParentRoute: () => AdminAppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -144,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/admin/subscribers': typeof AdminAppSubscribersRoute
   '/admin/team': typeof AdminAppTeamRoute
   '/admin/users': typeof AdminAppUsersRoute
+  '/admin/waitlist': typeof AdminAppWaitlistRoute
   '/admin/': typeof AdminAppIndexRoute
 }
 export interface FileRoutesByTo {
@@ -164,6 +171,7 @@ export interface FileRoutesByTo {
   '/admin/subscribers': typeof AdminAppSubscribersRoute
   '/admin/team': typeof AdminAppTeamRoute
   '/admin/users': typeof AdminAppUsersRoute
+  '/admin/waitlist': typeof AdminAppWaitlistRoute
   '/admin': typeof AdminAppIndexRoute
 }
 export interface FileRoutesById {
@@ -186,6 +194,7 @@ export interface FileRoutesById {
   '/admin/_app/subscribers': typeof AdminAppSubscribersRoute
   '/admin/_app/team': typeof AdminAppTeamRoute
   '/admin/_app/users': typeof AdminAppUsersRoute
+  '/admin/_app/waitlist': typeof AdminAppWaitlistRoute
   '/admin/_app/': typeof AdminAppIndexRoute
 }
 export interface FileRouteTypes {
@@ -209,6 +218,7 @@ export interface FileRouteTypes {
     | '/admin/subscribers'
     | '/admin/team'
     | '/admin/users'
+    | '/admin/waitlist'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -229,6 +239,7 @@ export interface FileRouteTypes {
     | '/admin/subscribers'
     | '/admin/team'
     | '/admin/users'
+    | '/admin/waitlist'
     | '/admin'
   id:
     | '__root__'
@@ -250,6 +261,7 @@ export interface FileRouteTypes {
     | '/admin/_app/subscribers'
     | '/admin/_app/team'
     | '/admin/_app/users'
+    | '/admin/_app/waitlist'
     | '/admin/_app/'
   fileRoutesById: FileRoutesById
 }
@@ -395,6 +407,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAppUsersRouteImport
       parentRoute: typeof AdminAppRoute
     }
+    '/admin/_app/waitlist': {
+      id: '/admin/_app/waitlist'
+      path: '/waitlist'
+      fullPath: '/admin/waitlist'
+      preLoaderRoute: typeof AdminAppWaitlistRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
   }
 }
 
@@ -413,6 +432,7 @@ interface AdminAppRouteChildren {
   AdminAppSubscribersRoute: typeof AdminAppSubscribersRoute
   AdminAppTeamRoute: typeof AdminAppTeamRoute
   AdminAppUsersRoute: typeof AdminAppUsersRoute
+  AdminAppWaitlistRoute: typeof AdminAppWaitlistRoute
   AdminAppIndexRoute: typeof AdminAppIndexRoute
 }
 
@@ -431,6 +451,7 @@ const AdminAppRouteChildren: AdminAppRouteChildren = {
   AdminAppSubscribersRoute: AdminAppSubscribersRoute,
   AdminAppTeamRoute: AdminAppTeamRoute,
   AdminAppUsersRoute: AdminAppUsersRoute,
+  AdminAppWaitlistRoute: AdminAppWaitlistRoute,
   AdminAppIndexRoute: AdminAppIndexRoute,
 }
 
