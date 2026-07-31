@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ArrowUpRight, Boxes } from "lucide-react";
+import { ArrowUpRight, Boxes, Sparkles } from "lucide-react";
 import { productsQueryOptions, type Product } from "@/lib/products";
 import { Reveal } from "./reveal";
+import { WaitlistDialog } from "./waitlist-dialog";
 import { cn } from "@/lib/utils";
 
 function statusStyle(status: string) {
@@ -13,8 +15,10 @@ function statusStyle(status: string) {
 }
 
 function ProductCard({ product, index }: { product: Product; index: number }) {
-  const href = product.website_url ?? "#contact";
-  const external = Boolean(product.website_url);
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
+  const url = product.website_url?.trim();
+  const href = url ? (/^https?:\/\//i.test(url) ? url : `https://${url}`) : null;
+
 
   return (
     <Reveal as="article" delay={index * 70} className="h-full">
@@ -73,19 +77,38 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           )}
         </div>
 
-        <a
-          href={href}
-          target={external ? "_blank" : undefined}
-          rel={external ? "noreferrer" : undefined}
-          className="relative mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-foreground"
-        >
-          Learn more
-          <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
+        {href ? (
+          <a
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            className="relative mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-foreground"
+          >
+            Learn more
+            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setWaitlistOpen(true)}
+            className="relative mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-foreground"
+          >
+            Join the waitlist
+            <Sparkles className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+          </button>
+        )}
       </div>
+
+      <WaitlistDialog
+        open={waitlistOpen}
+        onOpenChange={setWaitlistOpen}
+        productId={product.id}
+        productName={product.name}
+      />
     </Reveal>
   );
 }
+
 
 export function Ecosystem() {
   const { data: products } = useSuspenseQuery(productsQueryOptions);

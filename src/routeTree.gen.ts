@@ -23,11 +23,13 @@ import { Route as AdminAppCategoriesRouteImport } from './routes/admin._app.cate
 import { Route as AdminAppMediaRouteImport } from './routes/admin._app.media'
 import { Route as AdminAppMessagesRouteImport } from './routes/admin._app.messages'
 import { Route as AdminAppProductsRouteImport } from './routes/admin._app.products'
+import { Route as AdminAppProfileRouteImport } from './routes/admin._app.profile'
 import { Route as AdminAppSecurityRouteImport } from './routes/admin._app.security'
 import { Route as AdminAppSettingsRouteImport } from './routes/admin._app.settings'
 import { Route as AdminAppSubscribersRouteImport } from './routes/admin._app.subscribers'
 import { Route as AdminAppTeamRouteImport } from './routes/admin._app.team'
 import { Route as AdminAppUsersRouteImport } from './routes/admin._app.users'
+import { Route as AdminAppWaitlistRouteImport } from './routes/admin._app.waitlist'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -99,6 +101,11 @@ const AdminAppProductsRoute = AdminAppProductsRouteImport.update({
   path: '/products',
   getParentRoute: () => AdminAppRoute,
 } as any)
+const AdminAppProfileRoute = AdminAppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AdminAppRoute,
+} as any)
 const AdminAppSecurityRoute = AdminAppSecurityRouteImport.update({
   id: '/security',
   path: '/security',
@@ -124,6 +131,11 @@ const AdminAppUsersRoute = AdminAppUsersRouteImport.update({
   path: '/users',
   getParentRoute: () => AdminAppRoute,
 } as any)
+const AdminAppWaitlistRoute = AdminAppWaitlistRouteImport.update({
+  id: '/waitlist',
+  path: '/waitlist',
+  getParentRoute: () => AdminAppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -139,11 +151,13 @@ export interface FileRoutesByFullPath {
   '/admin/media': typeof AdminAppMediaRoute
   '/admin/messages': typeof AdminAppMessagesRoute
   '/admin/products': typeof AdminAppProductsRoute
+  '/admin/profile': typeof AdminAppProfileRoute
   '/admin/security': typeof AdminAppSecurityRoute
   '/admin/settings': typeof AdminAppSettingsRoute
   '/admin/subscribers': typeof AdminAppSubscribersRoute
   '/admin/team': typeof AdminAppTeamRoute
   '/admin/users': typeof AdminAppUsersRoute
+  '/admin/waitlist': typeof AdminAppWaitlistRoute
   '/admin/': typeof AdminAppIndexRoute
 }
 export interface FileRoutesByTo {
@@ -159,11 +173,13 @@ export interface FileRoutesByTo {
   '/admin/media': typeof AdminAppMediaRoute
   '/admin/messages': typeof AdminAppMessagesRoute
   '/admin/products': typeof AdminAppProductsRoute
+  '/admin/profile': typeof AdminAppProfileRoute
   '/admin/security': typeof AdminAppSecurityRoute
   '/admin/settings': typeof AdminAppSettingsRoute
   '/admin/subscribers': typeof AdminAppSubscribersRoute
   '/admin/team': typeof AdminAppTeamRoute
   '/admin/users': typeof AdminAppUsersRoute
+  '/admin/waitlist': typeof AdminAppWaitlistRoute
   '/admin': typeof AdminAppIndexRoute
 }
 export interface FileRoutesById {
@@ -181,11 +197,13 @@ export interface FileRoutesById {
   '/admin/_app/media': typeof AdminAppMediaRoute
   '/admin/_app/messages': typeof AdminAppMessagesRoute
   '/admin/_app/products': typeof AdminAppProductsRoute
+  '/admin/_app/profile': typeof AdminAppProfileRoute
   '/admin/_app/security': typeof AdminAppSecurityRoute
   '/admin/_app/settings': typeof AdminAppSettingsRoute
   '/admin/_app/subscribers': typeof AdminAppSubscribersRoute
   '/admin/_app/team': typeof AdminAppTeamRoute
   '/admin/_app/users': typeof AdminAppUsersRoute
+  '/admin/_app/waitlist': typeof AdminAppWaitlistRoute
   '/admin/_app/': typeof AdminAppIndexRoute
 }
 export interface FileRouteTypes {
@@ -204,11 +222,13 @@ export interface FileRouteTypes {
     | '/admin/media'
     | '/admin/messages'
     | '/admin/products'
+    | '/admin/profile'
     | '/admin/security'
     | '/admin/settings'
     | '/admin/subscribers'
     | '/admin/team'
     | '/admin/users'
+    | '/admin/waitlist'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -224,11 +244,13 @@ export interface FileRouteTypes {
     | '/admin/media'
     | '/admin/messages'
     | '/admin/products'
+    | '/admin/profile'
     | '/admin/security'
     | '/admin/settings'
     | '/admin/subscribers'
     | '/admin/team'
     | '/admin/users'
+    | '/admin/waitlist'
     | '/admin'
   id:
     | '__root__'
@@ -245,11 +267,13 @@ export interface FileRouteTypes {
     | '/admin/_app/media'
     | '/admin/_app/messages'
     | '/admin/_app/products'
+    | '/admin/_app/profile'
     | '/admin/_app/security'
     | '/admin/_app/settings'
     | '/admin/_app/subscribers'
     | '/admin/_app/team'
     | '/admin/_app/users'
+    | '/admin/_app/waitlist'
     | '/admin/_app/'
   fileRoutesById: FileRoutesById
 }
@@ -360,6 +384,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAppProductsRouteImport
       parentRoute: typeof AdminAppRoute
     }
+    '/admin/_app/profile': {
+      id: '/admin/_app/profile'
+      path: '/profile'
+      fullPath: '/admin/profile'
+      preLoaderRoute: typeof AdminAppProfileRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
     '/admin/_app/security': {
       id: '/admin/_app/security'
       path: '/security'
@@ -395,6 +426,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAppUsersRouteImport
       parentRoute: typeof AdminAppRoute
     }
+    '/admin/_app/waitlist': {
+      id: '/admin/_app/waitlist'
+      path: '/waitlist'
+      fullPath: '/admin/waitlist'
+      preLoaderRoute: typeof AdminAppWaitlistRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
   }
 }
 
@@ -408,11 +446,13 @@ interface AdminAppRouteChildren {
   AdminAppMediaRoute: typeof AdminAppMediaRoute
   AdminAppMessagesRoute: typeof AdminAppMessagesRoute
   AdminAppProductsRoute: typeof AdminAppProductsRoute
+  AdminAppProfileRoute: typeof AdminAppProfileRoute
   AdminAppSecurityRoute: typeof AdminAppSecurityRoute
   AdminAppSettingsRoute: typeof AdminAppSettingsRoute
   AdminAppSubscribersRoute: typeof AdminAppSubscribersRoute
   AdminAppTeamRoute: typeof AdminAppTeamRoute
   AdminAppUsersRoute: typeof AdminAppUsersRoute
+  AdminAppWaitlistRoute: typeof AdminAppWaitlistRoute
   AdminAppIndexRoute: typeof AdminAppIndexRoute
 }
 
@@ -426,11 +466,13 @@ const AdminAppRouteChildren: AdminAppRouteChildren = {
   AdminAppMediaRoute: AdminAppMediaRoute,
   AdminAppMessagesRoute: AdminAppMessagesRoute,
   AdminAppProductsRoute: AdminAppProductsRoute,
+  AdminAppProfileRoute: AdminAppProfileRoute,
   AdminAppSecurityRoute: AdminAppSecurityRoute,
   AdminAppSettingsRoute: AdminAppSettingsRoute,
   AdminAppSubscribersRoute: AdminAppSubscribersRoute,
   AdminAppTeamRoute: AdminAppTeamRoute,
   AdminAppUsersRoute: AdminAppUsersRoute,
+  AdminAppWaitlistRoute: AdminAppWaitlistRoute,
   AdminAppIndexRoute: AdminAppIndexRoute,
 }
 

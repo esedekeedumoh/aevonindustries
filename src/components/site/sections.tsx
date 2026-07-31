@@ -16,7 +16,11 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { Reveal, useInView } from "./reveal";
-import founderPortrait from "@/assets/founder.jpg";
+import newsRising from "@/assets/news-rising.jpg";
+import newsAi from "@/assets/news-ai.jpg";
+import newsBrowser from "@/assets/news-browser.jpg";
+import newsAcademy from "@/assets/news-academy.jpg";
+
 
 /* ---------------- Who we are ---------------- */
 
@@ -305,50 +309,15 @@ export function Timeline() {
   );
 }
 
-/* ---------------- Founder ---------------- */
-
-export function Founder() {
-  return (
-    <section className="relative px-4 py-24 sm:px-6 lg:py-28">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-        <Reveal>
-          <div className="glass relative overflow-hidden rounded-[2rem] p-3">
-            <img
-              src={founderPortrait}
-              alt="Portrait of the founder of Aevon Industries"
-              loading="lazy"
-              width={1024}
-              height={1280}
-              className="h-full w-full rounded-[1.5rem] object-cover"
-            />
-          </div>
-        </Reveal>
-
-        <Reveal delay={120}>
-          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-            Leadership
-          </p>
-          <h2 className="mt-3 text-3xl font-semibold sm:text-5xl">Meet the Founder</h2>
-          <p className="mt-5 text-pretty text-lg leading-relaxed text-muted-foreground">
-            Behind every Aevon product is a team of passionate innovators, engineers, designers,
-            and visionaries committed to building technology that shapes the future. Together,
-            they transform bold ideas into intelligent solutions, driving the innovation,
-            creativity, and excellence that power the entire Aevon ecosystem.
-          </p>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
 /* ---------------- News ---------------- */
 
 const articles = [
-  { title: "Aevon Rising", tag: "Company", body: "How a small team is building an ecosystem of products from the ground up." },
-  { title: "Building the Future with AI", tag: "Artificial Intelligence", body: "Our approach to assistive intelligence that respects people and their data." },
-  { title: "Inside Aevon Browser", tag: "Product", body: "A look at the architecture behind private, AI-native browsing." },
-  { title: "Introducing EduHub", tag: "Education", body: "Bringing structured, practical digital skills to more learners." },
+  { title: "Aevon Rising", tag: "Company", body: "How a small team is building an ecosystem of products from the ground up.", image: newsRising },
+  { title: "Building the Future with AI", tag: "Artificial Intelligence", body: "Our approach to assistive intelligence that respects people and their data.", image: newsAi },
+  { title: "Inside Aevon Browser", tag: "Product", body: "A look at the architecture behind private, AI-native browsing.", image: newsBrowser },
+  { title: "Introducing Aevon Academy", tag: "Education", body: "Bringing structured, practical digital skills to more learners.", image: newsAcademy },
 ];
+
 
 export function News() {
   return (
@@ -374,7 +343,15 @@ export function News() {
           {articles.map((a, i) => (
             <Reveal as="article" key={a.title} delay={i * 80}>
               <div className="glass group flex h-full flex-col rounded-3xl p-6 transition-all duration-500 hover:-translate-y-2 hover:glow-ring">
-                <div className="brand-gradient h-28 rounded-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+                <img
+                  src={a.image}
+                  alt={a.title}
+                  loading="lazy"
+                  width={1024}
+                  height={640}
+                  className="h-28 w-full rounded-2xl object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+
                 <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
                   {a.tag}
                 </p>

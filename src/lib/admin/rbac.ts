@@ -29,6 +29,8 @@ export type ModuleKey =
   | "careers"
   | "messages"
   | "subscribers"
+  | "waitlist"
+
   | "analytics"
   | "admins"
   | "settings"
@@ -48,7 +50,10 @@ const ALL_MODULES: ModuleKey[] = [
   "careers",
   "messages",
   "subscribers",
+  "waitlist",
   "analytics",
+
+
   "admins",
   "settings",
   "activity",
@@ -86,7 +91,9 @@ export const ROLE_PERMISSIONS: Record<AppRole, Partial<Record<ModuleKey, Perm[]>
     blog: ["view", "manage"],
     subscribers: ["view", "manage"],
     messages: ["view", "manage"],
+    waitlist: ["view", "manage"],
     analytics: ["view"],
+
     products: ["view"],
   },
   support_manager: {
