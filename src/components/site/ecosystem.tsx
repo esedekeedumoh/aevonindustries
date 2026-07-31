@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { ArrowUpRight, Boxes } from "lucide-react";
+import { ArrowUpRight, Boxes, Sparkles } from "lucide-react";
 import { productsQueryOptions, type Product } from "@/lib/products";
 import { Reveal } from "./reveal";
+import { WaitlistDialog } from "./waitlist-dialog";
 import { cn } from "@/lib/utils";
 
 function statusStyle(status: string) {
@@ -13,8 +15,10 @@ function statusStyle(status: string) {
 }
 
 function ProductCard({ product, index }: { product: Product; index: number }) {
-  const href = product.website_url ?? "#contact";
-  const external = Boolean(product.website_url);
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
+  const url = product.website_url?.trim();
+  const href = url ? (/^https?:\/\//i.test(url) ? url : `https://${url}`) : null;
+
 
   return (
     <Reveal as="article" delay={index * 70} className="h-full">
