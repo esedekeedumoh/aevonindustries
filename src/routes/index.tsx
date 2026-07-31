@@ -65,7 +65,7 @@ function Index() {
         <WhyAevon />
         <Impact />
         <Timeline />
-        <Founder />
+
         <News />
         <Careers />
         <Contact />

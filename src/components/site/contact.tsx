@@ -31,9 +31,9 @@ export function Contact() {
     const { error } = await supabase.from("contact_messages").insert({
       name: String(data.get("name") ?? ""),
       email: String(data.get("email") ?? ""),
-      subject: String(data.get("subject") ?? ""),
       message: String(data.get("message") ?? ""),
     });
+
     setSubmitting(false);
     if (error) {
       toast.error("We couldn't send your message. Please try again.");
