@@ -23,6 +23,7 @@ import { Route as AdminAppCategoriesRouteImport } from './routes/admin._app.cate
 import { Route as AdminAppMediaRouteImport } from './routes/admin._app.media'
 import { Route as AdminAppMessagesRouteImport } from './routes/admin._app.messages'
 import { Route as AdminAppProductsRouteImport } from './routes/admin._app.products'
+import { Route as AdminAppProfileRouteImport } from './routes/admin._app.profile'
 import { Route as AdminAppSecurityRouteImport } from './routes/admin._app.security'
 import { Route as AdminAppSettingsRouteImport } from './routes/admin._app.settings'
 import { Route as AdminAppSubscribersRouteImport } from './routes/admin._app.subscribers'
@@ -100,6 +101,11 @@ const AdminAppProductsRoute = AdminAppProductsRouteImport.update({
   path: '/products',
   getParentRoute: () => AdminAppRoute,
 } as any)
+const AdminAppProfileRoute = AdminAppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AdminAppRoute,
+} as any)
 const AdminAppSecurityRoute = AdminAppSecurityRouteImport.update({
   id: '/security',
   path: '/security',
@@ -145,6 +151,7 @@ export interface FileRoutesByFullPath {
   '/admin/media': typeof AdminAppMediaRoute
   '/admin/messages': typeof AdminAppMessagesRoute
   '/admin/products': typeof AdminAppProductsRoute
+  '/admin/profile': typeof AdminAppProfileRoute
   '/admin/security': typeof AdminAppSecurityRoute
   '/admin/settings': typeof AdminAppSettingsRoute
   '/admin/subscribers': typeof AdminAppSubscribersRoute
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/admin/media': typeof AdminAppMediaRoute
   '/admin/messages': typeof AdminAppMessagesRoute
   '/admin/products': typeof AdminAppProductsRoute
+  '/admin/profile': typeof AdminAppProfileRoute
   '/admin/security': typeof AdminAppSecurityRoute
   '/admin/settings': typeof AdminAppSettingsRoute
   '/admin/subscribers': typeof AdminAppSubscribersRoute
@@ -189,6 +197,7 @@ export interface FileRoutesById {
   '/admin/_app/media': typeof AdminAppMediaRoute
   '/admin/_app/messages': typeof AdminAppMessagesRoute
   '/admin/_app/products': typeof AdminAppProductsRoute
+  '/admin/_app/profile': typeof AdminAppProfileRoute
   '/admin/_app/security': typeof AdminAppSecurityRoute
   '/admin/_app/settings': typeof AdminAppSettingsRoute
   '/admin/_app/subscribers': typeof AdminAppSubscribersRoute
@@ -213,6 +222,7 @@ export interface FileRouteTypes {
     | '/admin/media'
     | '/admin/messages'
     | '/admin/products'
+    | '/admin/profile'
     | '/admin/security'
     | '/admin/settings'
     | '/admin/subscribers'
@@ -234,6 +244,7 @@ export interface FileRouteTypes {
     | '/admin/media'
     | '/admin/messages'
     | '/admin/products'
+    | '/admin/profile'
     | '/admin/security'
     | '/admin/settings'
     | '/admin/subscribers'
@@ -256,6 +267,7 @@ export interface FileRouteTypes {
     | '/admin/_app/media'
     | '/admin/_app/messages'
     | '/admin/_app/products'
+    | '/admin/_app/profile'
     | '/admin/_app/security'
     | '/admin/_app/settings'
     | '/admin/_app/subscribers'
@@ -372,6 +384,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAppProductsRouteImport
       parentRoute: typeof AdminAppRoute
     }
+    '/admin/_app/profile': {
+      id: '/admin/_app/profile'
+      path: '/profile'
+      fullPath: '/admin/profile'
+      preLoaderRoute: typeof AdminAppProfileRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
     '/admin/_app/security': {
       id: '/admin/_app/security'
       path: '/security'
@@ -427,6 +446,7 @@ interface AdminAppRouteChildren {
   AdminAppMediaRoute: typeof AdminAppMediaRoute
   AdminAppMessagesRoute: typeof AdminAppMessagesRoute
   AdminAppProductsRoute: typeof AdminAppProductsRoute
+  AdminAppProfileRoute: typeof AdminAppProfileRoute
   AdminAppSecurityRoute: typeof AdminAppSecurityRoute
   AdminAppSettingsRoute: typeof AdminAppSettingsRoute
   AdminAppSubscribersRoute: typeof AdminAppSubscribersRoute
@@ -446,6 +466,7 @@ const AdminAppRouteChildren: AdminAppRouteChildren = {
   AdminAppMediaRoute: AdminAppMediaRoute,
   AdminAppMessagesRoute: AdminAppMessagesRoute,
   AdminAppProductsRoute: AdminAppProductsRoute,
+  AdminAppProfileRoute: AdminAppProfileRoute,
   AdminAppSecurityRoute: AdminAppSecurityRoute,
   AdminAppSettingsRoute: AdminAppSettingsRoute,
   AdminAppSubscribersRoute: AdminAppSubscribersRoute,
