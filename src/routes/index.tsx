@@ -7,7 +7,6 @@ import { Ecosystem } from "@/components/site/ecosystem";
 import {
   Careers,
   Categories,
-  Founder,
   Impact,
   MissionVision,
   News,
@@ -15,6 +14,7 @@ import {
   WhoWeAre,
   WhyAevon,
 } from "@/components/site/sections";
+
 import { Contact } from "@/components/site/contact";
 import { SiteFooter } from "@/components/site/site-footer";
 import { productsQueryOptions } from "@/lib/products";

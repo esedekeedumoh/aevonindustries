@@ -343,7 +343,15 @@ export function News() {
           {articles.map((a, i) => (
             <Reveal as="article" key={a.title} delay={i * 80}>
               <div className="glass group flex h-full flex-col rounded-3xl p-6 transition-all duration-500 hover:-translate-y-2 hover:glow-ring">
-                <div className="brand-gradient h-28 rounded-2xl opacity-80 transition-opacity duration-500 group-hover:opacity-100" />
+                <img
+                  src={a.image}
+                  alt={a.title}
+                  loading="lazy"
+                  width={1024}
+                  height={640}
+                  className="h-28 w-full rounded-2xl object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+
                 <p className="mt-5 text-[11px] font-semibold uppercase tracking-[0.14em] text-primary">
                   {a.tag}
                 </p>
