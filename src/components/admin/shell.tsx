@@ -60,6 +60,8 @@ const NAV: { to: string; label: string; icon: React.ComponentType<{ className?: 
   { to: "/admin/careers", label: "Careers", icon: Briefcase, module: "careers" },
   { to: "/admin/messages", label: "Messages", icon: Mail, module: "messages" },
   { to: "/admin/subscribers", label: "Subscribers", icon: Users, module: "subscribers" },
+  { to: "/admin/waitlist", label: "Waitlist", icon: ClipboardList, module: "waitlist" },
+
   { to: "/admin/analytics", label: "Analytics", icon: LayoutGrid, module: "analytics" },
   { to: "/admin/users", label: "Users & Admins", icon: Shield, module: "admins" },
   { to: "/admin/settings", label: "Settings", icon: Settings, module: "settings" },

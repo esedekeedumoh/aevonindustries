@@ -223,3 +223,23 @@ export type MediaAsset = {
 
 export const adminCareersQuery = list<JobOpening>("careers", "job_openings", "sort_order");
 export const adminMediaQuery = list<MediaAsset>("media", "media_assets", "created_at", false);
+
+export type WaitlistEntry = {
+  id: string;
+  name: string;
+  email: string;
+  phone: string | null;
+  product_id: string | null;
+  product_name: string | null;
+  status: string;
+  notified_at: string | null;
+  created_at: string;
+};
+
+export const adminWaitlistQuery = list<WaitlistEntry>(
+  "waitlist",
+  "waitlist_entries",
+  "created_at",
+  false,
+);
+
