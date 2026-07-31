@@ -64,19 +64,26 @@ export function Contact() {
               <span className="truncate">aevontechonolies@gmail.com</span>
             </a>
             <a
-              href="tel:07063985329"
+              href="https://wa.me/2347063985329"
+              target="_blank"
+              rel="noreferrer"
               className="glass flex items-center gap-3 rounded-2xl px-5 py-4 text-sm transition-all duration-300 hover:-translate-y-0.5 hover:text-primary"
             >
               <Phone className="h-4 w-4 shrink-0 text-primary" />
-              07063985329
+              <span>07063985329</span>
+              <span className="ml-auto text-xs text-muted-foreground">WhatsApp</span>
             </a>
             <a
-              href="tel:07069899116"
+              href="https://wa.me/2347069899116"
+              target="_blank"
+              rel="noreferrer"
               className="glass flex items-center gap-3 rounded-2xl px-5 py-4 text-sm transition-all duration-300 hover:-translate-y-0.5 hover:text-primary"
             >
               <Phone className="h-4 w-4 shrink-0 text-primary" />
-              07069899116
+              <span>07069899116</span>
+              <span className="ml-auto text-xs text-muted-foreground">WhatsApp</span>
             </a>
+
           </div>
 
           <ul className="mt-8 flex flex-wrap gap-2">
@@ -123,13 +130,6 @@ export function Contact() {
                 />
               </label>
             </div>
-            <label className="grid gap-2 text-sm">
-              <span className="font-medium">Subject</span>
-              <input
-                name="subject"
-                className="rounded-2xl border border-input bg-background/60 px-4 py-3 text-sm outline-none transition-all duration-300 focus:border-primary focus:ring-4 focus:ring-primary/15"
-              />
-            </label>
             <label className="grid gap-2 text-sm">
               <span className="font-medium">Message</span>
               <textarea
