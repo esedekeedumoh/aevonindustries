@@ -29,6 +29,8 @@ export type ModuleKey =
   | "careers"
   | "messages"
   | "subscribers"
+  | "waitlist"
+
   | "analytics"
   | "admins"
   | "settings"
@@ -48,7 +50,8 @@ const ALL_MODULES: ModuleKey[] = [
   "careers",
   "messages",
   "subscribers",
-  "analytics",
+  "waitlist",
+
   "admins",
   "settings",
   "activity",
