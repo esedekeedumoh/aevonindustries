@@ -6,6 +6,8 @@ import {
   Bell,
   Briefcase,
   ChevronLeft,
+  ClipboardList,
+
   FileText,
   FolderTree,
   Gauge,
