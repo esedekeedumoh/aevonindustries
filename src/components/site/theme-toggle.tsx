@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
-export function ThemeToggle() {
+export function ThemeToggle({ className, showLabel = false }: { className?: string; showLabel?: boolean }) {
   const [dark, setDark] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("aevon-theme");
-    const prefers =
-      stored === "dark" ||
-      (stored === null && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    setDark(prefers);
-    document.documentElement.classList.toggle("dark", prefers);
+    // Light is the default theme; only an explicit stored choice enables dark.
+    const isDark = localStorage.getItem("aevon-theme") === "dark";
+    setDark(isDark);
+    document.documentElement.classList.toggle("dark", isDark);
     setMounted(true);
   }, []);
 
@@ -27,9 +25,13 @@ export function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      className="glass grid h-10 w-10 shrink-0 place-items-center rounded-full text-foreground transition-all duration-300 hover:scale-105 hover:text-primary"
+      className={
+        className ??
+        "glass grid h-10 w-10 shrink-0 place-items-center rounded-full text-foreground transition-all duration-300 hover:scale-105 hover:text-primary"
+      }
     >
       {mounted && dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      {showLabel && <span>{mounted && dark ? "Light mode" : "Dark mode"}</span>}
     </button>
   );
 }

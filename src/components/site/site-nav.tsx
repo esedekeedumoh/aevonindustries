@@ -53,7 +53,6 @@ export function SiteNav() {
         </ul>
 
         <div className="flex shrink-0 items-center gap-2">
-          <ThemeToggle />
           <a
             href="#contact"
             className="brand-gradient hidden rounded-full px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-primary/20 transition-transform duration-300 hover:scale-[1.03] sm:inline-flex"
@@ -65,7 +64,7 @@ export function SiteNav() {
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
-            className="glass grid h-10 w-10 place-items-center rounded-full lg:hidden"
+            className="glass grid h-10 w-10 place-items-center rounded-full"
           >
             {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
           </button>
@@ -73,10 +72,10 @@ export function SiteNav() {
       </nav>
 
       {open && (
-        <div className="glass glow-ring mx-auto mt-2 max-w-6xl rounded-3xl p-3 lg:hidden">
+        <div className="glass glow-ring mx-auto mt-2 max-w-6xl rounded-3xl p-3">
           <ul className="grid gap-1">
             {links.map((l) => (
-              <li key={l.href}>
+              <li key={l.href} className="lg:hidden">
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
@@ -87,6 +86,12 @@ export function SiteNav() {
               </li>
             ))}
             <li>
+              <ThemeToggle
+                showLabel
+                className="flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-sm text-foreground transition-colors hover:bg-accent"
+              />
+            </li>
+            <li className="sm:hidden">
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}
