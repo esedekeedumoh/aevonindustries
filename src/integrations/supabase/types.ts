@@ -555,7 +555,54 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      team_members_public: {
+        Row: {
+          bio: string | null
+          created_at: string | null
+          department: string | null
+          featured: boolean | null
+          github_url: string | null
+          id: string | null
+          linkedin_url: string | null
+          name: string | null
+          photo_url: string | null
+          role: string | null
+          sort_order: number | null
+          updated_at: string | null
+          x_url: string | null
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string | null
+          department?: string | null
+          featured?: boolean | null
+          github_url?: string | null
+          id?: string | null
+          linkedin_url?: string | null
+          name?: string | null
+          photo_url?: string | null
+          role?: string | null
+          sort_order?: number | null
+          updated_at?: string | null
+          x_url?: string | null
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string | null
+          department?: string | null
+          featured?: boolean | null
+          github_url?: string | null
+          id?: string | null
+          linkedin_url?: string | null
+          name?: string | null
+          photo_url?: string | null
+          role?: string | null
+          sort_order?: number | null
+          updated_at?: string | null
+          x_url?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       can_edit: { Args: { _user_id: string }; Returns: boolean }
@@ -567,6 +614,7 @@ export type Database = {
         Returns: boolean
       }
       is_admin: { Args: { _user_id: string }; Returns: boolean }
+      is_staff: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
       app_role:
