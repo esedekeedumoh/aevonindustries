@@ -25,9 +25,13 @@ export function ThemeToggle({ className, showLabel = false }: { className?: stri
       type="button"
       onClick={toggle}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      className="glass grid h-10 w-10 shrink-0 place-items-center rounded-full text-foreground transition-all duration-300 hover:scale-105 hover:text-primary"
+      className={
+        className ??
+        "glass grid h-10 w-10 shrink-0 place-items-center rounded-full text-foreground transition-all duration-300 hover:scale-105 hover:text-primary"
+      }
     >
       {mounted && dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+      {showLabel && <span>{mounted && dark ? "Light mode" : "Dark mode"}</span>}
     </button>
   );
 }
