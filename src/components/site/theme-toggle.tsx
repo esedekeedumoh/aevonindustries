@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 
-export function ThemeToggle() {
+export function ThemeToggle({ className, showLabel = false }: { className?: string; showLabel?: boolean }) {
   const [dark, setDark] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("aevon-theme");
-    const prefers =
-      stored === "dark" ||
-      (stored === null && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    setDark(prefers);
-    document.documentElement.classList.toggle("dark", prefers);
+    // Light is the default theme; only an explicit stored choice enables dark.
+    const isDark = localStorage.getItem("aevon-theme") === "dark";
+    setDark(isDark);
+    document.documentElement.classList.toggle("dark", isDark);
     setMounted(true);
   }, []);
 
