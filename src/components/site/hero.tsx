@@ -98,11 +98,9 @@ export function Hero() {
       <div className="relative mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
           <Reveal>
-            <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium text-muted-foreground">
-              <Sparkles className="h-3.5 w-3.5 text-primary" />
-              An ecosystem of intelligent products
-            </span>
+            <RotatingTagline />
           </Reveal>
+
 
           <Reveal delay={80}>
             <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.05] sm:text-6xl lg:text-[4.25rem]">
