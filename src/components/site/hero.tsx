@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Reveal } from "./reveal";
+import { RotatingTagline } from "./rotating-tagline";
 import aevonLogo from "@/assets/aevon.png.asset.json";
 import vonLogo from "@/assets/von.png.asset.json";
 import hakuLogo from "@/assets/haku.png.asset.json";
