@@ -206,6 +206,26 @@
   }
 }
 
+@keyframes tagline {
+  0% {
+    transform: translateX(-2.5rem);
+    opacity: 0;
+  }
+  12%,
+  84% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(2.5rem);
+    opacity: 0;
+  }
+}
+
+@utility animate-tagline {
+  animation: tagline 4.2s ease-in-out both;
+}
+
 @utility animate-float-slow {
   animation: float-slow 12s ease-in-out infinite;
 }
