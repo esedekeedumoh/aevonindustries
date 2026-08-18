@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { KeyRound, Save } from "lucide-react";
+import { KeyRound, Save, Upload } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { adminSessionQueryOptions, logActivity } from "@/lib/admin/api";
@@ -10,7 +10,7 @@ import { ROLE_LABELS } from "@/lib/admin/rbac";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { useAvatarUrl, uploadAvatar } from "@/lib/admin/avatar";
 
 export const Route = createFileRoute("/admin/_app/profile")({
   head: () => ({
@@ -109,6 +109,28 @@ function ProfilePage() {
     .join("")
     .toUpperCase();
 
+  const avatarSrc = useAvatarUrl(form.avatar_url);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const upload = useMutation({
+    mutationFn: async (file: File) => {
+      if (!session) throw new Error("Not signed in");
+      const path = await uploadAvatar(session.userId, file);
+      const { error } = await supabase
+        .from("admin_profiles")
+        .update({ avatar_url: path })
+        .eq("id", session.userId);
+      if (error) throw error;
+      return path;
+    },
+    onSuccess: (path) => {
+      setForm((f) => ({ ...f, avatar_url: path }));
+      queryClient.invalidateQueries({ queryKey: adminSessionQueryOptions.queryKey });
+      toast.success("Profile picture updated");
+    },
+    onError: (e: Error) => toast.error(e.message),
+  });
+
   return (
     <>
       <PageHeader
@@ -124,9 +146,9 @@ function ProfilePage() {
       <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
         <Panel className="p-6">
           <div className="flex flex-col items-center text-center">
-            {form.avatar_url ? (
+            {avatarSrc ? (
               <img
-                src={form.avatar_url}
+                src={avatarSrc}
                 alt={form.full_name || "Admin avatar"}
                 className="h-24 w-24 rounded-2xl object-cover"
               />
@@ -135,6 +157,28 @@ function ProfilePage() {
                 {initials}
               </span>
             )}
+            <input
+              ref={fileRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) upload.mutate(file);
+                e.target.value = "";
+              }}
+            />
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="mt-4"
+              disabled={upload.isPending}
+              onClick={() => fileRef.current?.click()}
+            >
+              <Upload className="mr-1.5 h-4 w-4" />
+              {upload.isPending ? "Uploading…" : "Upload photo"}
+            </Button>
             <p className="mt-4 font-medium">{form.full_name || "Unnamed admin"}</p>
             <p className="text-sm text-muted-foreground">{session?.email}</p>
             <div className="mt-3 flex flex-wrap justify-center gap-1.5">
@@ -190,17 +234,6 @@ function ProfilePage() {
                   className="mt-1.5"
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                />
-              </div>
-              <div className="sm:col-span-2">
-                <Label htmlFor="avatar_url">Avatar image URL</Label>
-                <Textarea
-                  id="avatar_url"
-                  rows={2}
-                  className="mt-1.5"
-                  placeholder="https://…"
-                  value={form.avatar_url}
-                  onChange={(e) => setForm({ ...form, avatar_url: e.target.value })}
                 />
               </div>
             </div>

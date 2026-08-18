@@ -15,6 +15,7 @@ import { Route as AdminChangePasswordRouteImport } from './routes/admin.change-p
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminAppIndexRouteImport } from './routes/admin._app.index'
 import { Route as AdminAppActivityRouteImport } from './routes/admin._app.activity'
+import { Route as AdminAppAdminsRouteImport } from './routes/admin._app.admins'
 import { Route as AdminAppAnalyticsRouteImport } from './routes/admin._app.analytics'
 import { Route as AdminAppBackupRouteImport } from './routes/admin._app.backup'
 import { Route as AdminAppBlogRouteImport } from './routes/admin._app.blog'
@@ -59,6 +60,11 @@ const AdminAppIndexRoute = AdminAppIndexRouteImport.update({
 const AdminAppActivityRoute = AdminAppActivityRouteImport.update({
   id: '/activity',
   path: '/activity',
+  getParentRoute: () => AdminAppRoute,
+} as any)
+const AdminAppAdminsRoute = AdminAppAdminsRouteImport.update({
+  id: '/admins',
+  path: '/admins',
   getParentRoute: () => AdminAppRoute,
 } as any)
 const AdminAppAnalyticsRoute = AdminAppAnalyticsRouteImport.update({
@@ -143,6 +149,7 @@ export interface FileRoutesByFullPath {
   '/admin/change-password': typeof AdminChangePasswordRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/activity': typeof AdminAppActivityRoute
+  '/admin/admins': typeof AdminAppAdminsRoute
   '/admin/analytics': typeof AdminAppAnalyticsRoute
   '/admin/backup': typeof AdminAppBackupRoute
   '/admin/blog': typeof AdminAppBlogRoute
@@ -165,6 +172,7 @@ export interface FileRoutesByTo {
   '/admin/change-password': typeof AdminChangePasswordRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/activity': typeof AdminAppActivityRoute
+  '/admin/admins': typeof AdminAppAdminsRoute
   '/admin/analytics': typeof AdminAppAnalyticsRoute
   '/admin/backup': typeof AdminAppBackupRoute
   '/admin/blog': typeof AdminAppBlogRoute
@@ -189,6 +197,7 @@ export interface FileRoutesById {
   '/admin/change-password': typeof AdminChangePasswordRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/_app/activity': typeof AdminAppActivityRoute
+  '/admin/_app/admins': typeof AdminAppAdminsRoute
   '/admin/_app/analytics': typeof AdminAppAnalyticsRoute
   '/admin/_app/backup': typeof AdminAppBackupRoute
   '/admin/_app/blog': typeof AdminAppBlogRoute
@@ -214,6 +223,7 @@ export interface FileRouteTypes {
     | '/admin/change-password'
     | '/admin/login'
     | '/admin/activity'
+    | '/admin/admins'
     | '/admin/analytics'
     | '/admin/backup'
     | '/admin/blog'
@@ -236,6 +246,7 @@ export interface FileRouteTypes {
     | '/admin/change-password'
     | '/admin/login'
     | '/admin/activity'
+    | '/admin/admins'
     | '/admin/analytics'
     | '/admin/backup'
     | '/admin/blog'
@@ -259,6 +270,7 @@ export interface FileRouteTypes {
     | '/admin/change-password'
     | '/admin/login'
     | '/admin/_app/activity'
+    | '/admin/_app/admins'
     | '/admin/_app/analytics'
     | '/admin/_app/backup'
     | '/admin/_app/blog'
@@ -326,6 +338,13 @@ declare module '@tanstack/react-router' {
       path: '/activity'
       fullPath: '/admin/activity'
       preLoaderRoute: typeof AdminAppActivityRouteImport
+      parentRoute: typeof AdminAppRoute
+    }
+    '/admin/_app/admins': {
+      id: '/admin/_app/admins'
+      path: '/admins'
+      fullPath: '/admin/admins'
+      preLoaderRoute: typeof AdminAppAdminsRouteImport
       parentRoute: typeof AdminAppRoute
     }
     '/admin/_app/analytics': {
@@ -438,6 +457,7 @@ declare module '@tanstack/react-router' {
 
 interface AdminAppRouteChildren {
   AdminAppActivityRoute: typeof AdminAppActivityRoute
+  AdminAppAdminsRoute: typeof AdminAppAdminsRoute
   AdminAppAnalyticsRoute: typeof AdminAppAnalyticsRoute
   AdminAppBackupRoute: typeof AdminAppBackupRoute
   AdminAppBlogRoute: typeof AdminAppBlogRoute
@@ -458,6 +478,7 @@ interface AdminAppRouteChildren {
 
 const AdminAppRouteChildren: AdminAppRouteChildren = {
   AdminAppActivityRoute: AdminAppActivityRoute,
+  AdminAppAdminsRoute: AdminAppAdminsRoute,
   AdminAppAnalyticsRoute: AdminAppAnalyticsRoute,
   AdminAppBackupRoute: AdminAppBackupRoute,
   AdminAppBlogRoute: AdminAppBlogRoute,
