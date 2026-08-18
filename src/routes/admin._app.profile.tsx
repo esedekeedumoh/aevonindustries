@@ -10,7 +10,7 @@ import { ROLE_LABELS } from "@/lib/admin/rbac";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { useAvatarUrl, uploadAvatar } from "@/lib/admin/avatar";
 
 export const Route = createFileRoute("/admin/_app/profile")({
   head: () => ({
