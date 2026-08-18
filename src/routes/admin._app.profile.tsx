@@ -192,17 +192,6 @@ function ProfilePage() {
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 />
               </div>
-              <div className="sm:col-span-2">
-                <Label htmlFor="avatar_url">Avatar image URL</Label>
-                <Textarea
-                  id="avatar_url"
-                  rows={2}
-                  className="mt-1.5"
-                  placeholder="https://…"
-                  value={form.avatar_url}
-                  onChange={(e) => setForm({ ...form, avatar_url: e.target.value })}
-                />
-              </div>
             </div>
           </Panel>
 
