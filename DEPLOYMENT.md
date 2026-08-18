@@ -32,8 +32,12 @@ Just connect the repo; no extra settings needed.
 Configured in `vercel.json`:
 
 - Build command: `NITRO_PRESET=vercel npm run build`
-- Output directory: `.vercel/output` (Build Output API v3)
 - Framework preset: none (do not let Vercel auto-detect Vite)
+- No `outputDirectory`: the build emits Build Output API v3 into `.vercel/output`,
+  which Vercel picks up automatically. Setting an output directory (even
+  `.vercel/output`) makes Vercel look for a nested folder and the build fails with
+  "No Output Directory named 'output' found". Leave Project Settings → Output
+  Directory empty as well.
 
 Connect the repo, add the env vars, deploy.
 
