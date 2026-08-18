@@ -109,6 +109,28 @@ function ProfilePage() {
     .join("")
     .toUpperCase();
 
+  const avatarSrc = useAvatarUrl(form.avatar_url);
+  const fileRef = useRef<HTMLInputElement>(null);
+
+  const upload = useMutation({
+    mutationFn: async (file: File) => {
+      if (!session) throw new Error("Not signed in");
+      const path = await uploadAvatar(session.userId, file);
+      const { error } = await supabase
+        .from("admin_profiles")
+        .update({ avatar_url: path })
+        .eq("id", session.userId);
+      if (error) throw error;
+      return path;
+    },
+    onSuccess: (path) => {
+      setForm((f) => ({ ...f, avatar_url: path }));
+      queryClient.invalidateQueries({ queryKey: adminSessionQueryOptions.queryKey });
+      toast.success("Profile picture updated");
+    },
+    onError: (e: Error) => toast.error(e.message),
+  });
+
   return (
     <>
       <PageHeader
