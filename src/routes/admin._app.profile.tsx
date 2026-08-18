@@ -146,9 +146,9 @@ function ProfilePage() {
       <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
         <Panel className="p-6">
           <div className="flex flex-col items-center text-center">
-            {form.avatar_url ? (
+            {avatarSrc ? (
               <img
-                src={form.avatar_url}
+                src={avatarSrc}
                 alt={form.full_name || "Admin avatar"}
                 className="h-24 w-24 rounded-2xl object-cover"
               />
@@ -157,6 +157,28 @@ function ProfilePage() {
                 {initials}
               </span>
             )}
+            <input
+              ref={fileRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) upload.mutate(file);
+                e.target.value = "";
+              }}
+            />
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="mt-4"
+              disabled={upload.isPending}
+              onClick={() => fileRef.current?.click()}
+            >
+              <Upload className="mr-1.5 h-4 w-4" />
+              {upload.isPending ? "Uploading…" : "Upload photo"}
+            </Button>
             <p className="mt-4 font-medium">{form.full_name || "Unnamed admin"}</p>
             <p className="text-sm text-muted-foreground">{session?.email}</p>
             <div className="mt-3 flex flex-wrap justify-center gap-1.5">
