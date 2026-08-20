@@ -3,4 +3,4 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/ahglbolv/aevonindustries.site/
     - /bin/mkdir -p $DEPLOYPATH
-    - /bin/cp -R .output/public/* $DEPLOYPATH
+    - /bin/cp -R dist/* $DEPLOYPATH
