@@ -30,7 +30,7 @@ export default async function config(env: {
   command: "build" | "serve";
   mode: string;
 }): Promise<UserConfig> {
-  if (canResolve("@lovable.dev/vite-tanstack-config")) {
+  if (process.env.STANDALONE_VITE !== "1" && canResolve("@lovable.dev/vite-tanstack-config")) {
     const { defineConfig } = await import("@lovable.dev/vite-tanstack-config");
     const wrapped = defineConfig({ tanstackStart: tanstackStartOptions }) as
       | UserConfig
