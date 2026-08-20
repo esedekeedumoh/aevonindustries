@@ -2,6 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/ahglbolv/aevonindustries.ste/
-    - /usr/local/bin/npm install
-    - /usr/local/bin/npm run build
     - /bin/cp -R dist/* $DEPLOYPATH
