@@ -1,5 +1,12 @@
+---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/ahglbolv/aevonindustries.site/
-    - /bin/mkdir -p $DEPLOYPATH
-    - /bin/cp -R dist/client/* $DEPLOYPATH
+    - export DEPLOYPATH="$HOME/aevonindustries.site"
+    - /bin/mkdir -p "$DEPLOYPATH"
+    - /bin/cp -R ./package.json ./package-lock.json ./bun.lock ./bunfig.toml ./tsconfig.json ./vite.config.ts ./components.json ./app.cjs ./.env.example "$DEPLOYPATH" 2>/dev/null || true
+    - /bin/rm -rf "$DEPLOYPATH/src" "$DEPLOYPATH/public"
+    - /bin/cp -R ./src ./public "$DEPLOYPATH"
+    - cd "$DEPLOYPATH" && npm install --include=dev --no-audit --no-fund
+    - cd "$DEPLOYPATH" && npm run build
+    - /bin/mkdir -p "$DEPLOYPATH/tmp"
+    - /bin/touch "$DEPLOYPATH/tmp/restart.txt"
