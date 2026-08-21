@@ -1,0 +1,63 @@
+import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
+
+const handler: Handler = async (
+  event: HandlerEvent,
+  _context: HandlerContext
+) => {
+  try {
+    const { default: server } = await import("../../dist/server/index.mjs");
+
+    const url = new URL(
+      event.rawUrl ||
+        `https://${event.headers.host || "localhost"}${event.path}`
+    );
+
+    const headers = new Headers();
+
+    for (const [key, value] of Object.entries(event.headers)) {
+      if (value !== undefined) {
+        headers.set(key, value);
+      }
+    }
+
+    const request = new Request(url, {
+      method: event.httpMethod,
+      headers,
+      body:
+        event.httpMethod === "GET" || event.httpMethod === "HEAD"
+          ? undefined
+          : event.isBase64Encoded
+            ? Buffer.from(event.body || "", "base64")
+            : event.body || undefined,
+    });
+
+    const response = await server.fetch(request);
+
+    const body = await response.arrayBuffer();
+
+    const responseHeaders: Record<string, string> = {};
+
+    response.headers.forEach((value, key) => {
+      responseHeaders[key] = value;
+    });
+
+    return {
+      statusCode: response.status,
+      headers: responseHeaders,
+      body: Buffer.from(body).toString("base64"),
+      isBase64Encoded: true,
+    };
+  } catch (error) {
+    console.error("Aevon Netlify server error:", error);
+
+    return {
+      statusCode: 500,
+      headers: {
+        "Content-Type": "text/plain",
+      },
+      body: "Internal Server Error",
+    };
+  }
+};
+
+export { handler };
